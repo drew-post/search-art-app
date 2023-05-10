@@ -1,0 +1,36 @@
+* {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.art-details-container {
+    padding: 40px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+.art-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.art-info {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+p {
+    font-size: 18px;
+}
+
+img {
+    padding: 35px 20px;
+}
+
+.art-details-container h2 {
+    padding: 10px;
+}

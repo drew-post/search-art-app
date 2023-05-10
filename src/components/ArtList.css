@@ -1,0 +1,30 @@
+.art-list {
+    padding: 40px;
+}
+
+.art-list h1 {
+    font-size: 40px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+
+input {
+    font-size: 18px;
+    font-family: 'Domine', serif;
+    margin: 10px 5px 10px 0;
+    padding: 6px;
+}
+
+button {
+    font-size: 18px;
+    font-family: 'Domine', serif;
+    font-weight: 500;
+    padding: 6px;
+}

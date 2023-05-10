@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import './Art.css'
 
 function Art() {
     const { id } = useParams();
@@ -19,27 +20,41 @@ function Art() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [id]);
 
     useEffect(() => {
-        // FIX: only call when art is loaded
         fetch(`https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`)
-            .then((data) => {
-                console.log(data);
-                setImgSrc(data.url);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
+        .then((data) => {
+            console.log(data);
+            setImgSrc(data.url);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
     }, [art]);
 
     return (
-        <>
-            {isLoading ? <h1>Loading...</h1> : <><h1>{art.title} - {art.date_display}</h1>
-                <><h2>{art.artist_title}</h2><p>{art.dimensions}</p></>
-                {art.inscriptions !== "none" && <p>{art.inscriptions}</p>}
-                <img src={imgSrc} alt={art.thumbnail?.alt} width={500} /></>}
-        </>
+        <div className="art-details-container">
+            <h4>
+                <Link to={`/`}> Back </Link>
+            </h4>
+            {isLoading ? <h2>Loading...</h2> : 
+                <div className="art-details">
+                    <div className="art-info">
+                        <h1>{art.title}, {art.artist_title}</h1>
+                        <h2>{art.date_display}</h2>
+                        <p><b>Style:</b> {art.style_title === "none" || art.style_title === null ? "N/A" : art.style_title}</p>
+                        <p><b>Dimensions:</b> {art.dimensions}</p>
+                        <p><b>Medium Display:</b> {art.medium_display}</p>
+                        <p><b>Inscriptions:</b> {art.inscriptions === "none" || art.inscriptions === null ? "N/A" : art.inscriptions}</p>
+                        <p><b>Publication History:</b> {art.publication_history === "none" || art.publication_history === null ? "N/A" : art.publication_history}</p>
+                        <p><b>Exhibition History:</b> {art.exhibition_history === "none" || art.exhibition_history === null ? "N/A" : art.exhibition_history}</p>
+                    </div>
+                    <br />
+                    <img src={imgSrc} alt={art.thumbnail?.alt} width={500} />
+                </div>
+            }
+        </div>
     )
 
 }

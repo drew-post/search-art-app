@@ -1,4 +1,3 @@
-import './App.css';
 import ArtList from './components/ArtList';
 import Art from './components/Art';
 import { Routes, Route } from 'react-router-dom';
