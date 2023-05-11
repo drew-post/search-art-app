@@ -6,7 +6,6 @@ function ArtList() {
     const [artList, setArtList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const filters = ["Americas", "Ancient", "Landscapes", "Impressionism", "Photography", "Mythology"];
 
     const searchItems = () => {
         setIsLoading(true);
@@ -46,13 +45,6 @@ function ArtList() {
                     onChange={(e) => setSearchInput(e.target.value)}
                 />
                 <button onClick={() => searchItems()}>Search</button>
-            </div>
-            <div className="filters">
-                {
-                    filters.map((filter) => (
-                        <button onClick={() => { setSearchInput(filter); setArtList(artList.filter(art => art.style_titles.includes(filter.toLowerCase()) || art.subject_titles.includes(filter.toLowerCase())))}}>{filter}</button>
-                    ))
-                }
             </div>
             {isLoading ? <h2 className="art-loading">Loading...</h2> :
                 <div className="art-cards">
