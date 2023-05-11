@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './ArtList.css'
+import ListCard from './ListCard';
+import './ArtList.css';
 
 function ArtList() {
     const [artList, setArtList] = useState([]);
@@ -23,7 +23,7 @@ function ArtList() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch("https://api.artic.edu/api/v1/artworks?page=1&limit=100")
+        fetch("https://api.artic.edu/api/v1/artworks?page=1&limit=50")
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.data);
@@ -38,22 +38,19 @@ function ArtList() {
     return (
         <div className="art-list">
             <h1>Art Database</h1>
-            {isLoading ? <h2 className="art-loading">Loading...</h2> : 
-                <div>
-                    <input
-                        placeholder='Search...'
-                        onChange={(e) => setSearchInput(e.target.value)}
-                    />
-                    <button onClick={() => searchItems()}>Search</button>
+            <p>Search and learn about art provided by the Art Institute of Chicago!</p>
+            <div>
+                <input
+                    placeholder='Search...'
+                    onChange={(e) => setSearchInput(e.target.value)}
+                />
+                <button onClick={() => searchItems()}>Search</button>
+            </div>
+            {isLoading ? <h2 className="art-loading">Loading...</h2> :
+                <div className="art-cards">
                     {
                         artList.map((art) => (
-                            <div key={art.id}>
-                                <h4>
-                                    <Link to={`/${art.id}`}>
-                                        {art.title}
-                                    </Link>
-                                </h4>
-                            </div>
+                            <ListCard art={art} />
                         ))
                     }
                 </div>

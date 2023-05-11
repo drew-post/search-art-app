@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './Art.css'
+import './Art.css';
+import PlaceholderImage from '../assets/placeholder-image.png';
 
-function Art() {
+function ArtDetails() {
     const { id } = useParams();
     const [art, setArt] = useState([]);
     const [imgSrc, setImgSrc] = useState("");
@@ -41,7 +42,7 @@ function Art() {
             {isLoading ? <h2>Loading...</h2> : 
                 <div className="art-details">
                     <div className="art-info">
-                        <h1>{art.title}, {art.artist_title}</h1>
+                        <h1>{art.title}, {art.artist_title === null ? "Unknown" : art.artist_title}</h1>
                         <h2>{art.date_display}</h2>
                         <p><b>Style:</b> {art.style_title === "none" || art.style_title === null ? "N/A" : art.style_title}</p>
                         <p><b>Dimensions:</b> {art.dimensions}</p>
@@ -51,7 +52,7 @@ function Art() {
                         <p><b>Exhibition History:</b> {art.exhibition_history === "none" || art.exhibition_history === null ? "N/A" : art.exhibition_history}</p>
                     </div>
                     <br />
-                    <img src={imgSrc} alt={art.thumbnail?.alt} width={500} />
+                    <img src={art.image_id === null ? PlaceholderImage : imgSrc} alt={art.thumbnail?.alt} width={500} />
                 </div>
             }
         </div>
@@ -59,4 +60,4 @@ function Art() {
 
 }
 
-export default Art;
+export default ArtDetails;
