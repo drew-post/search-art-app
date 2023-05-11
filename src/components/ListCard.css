@@ -13,3 +13,7 @@
 .card img {
     padding: 15px;
 }
+
+.card img:hover {
+    opacity: 0.8;
+}

@@ -15,14 +15,6 @@ input {
     width: 80%;
 }
 
-button {
-    font-size: 18px;
-    font-family: 'Domine', serif;
-    font-weight: 500;
-    padding: 6px;
-    width: 10%;
-}
-
 .art-list {
     display: flex;
     flex-direction: column;
@@ -44,4 +36,26 @@ button {
 .search-bar {
     width: 100%;
     text-align: center;
+}
+
+.search-bar button {
+    font-size: 18px;
+    font-family: 'Domine', serif;
+    font-weight: 500;
+    padding: 6px;
+    width: 10%;
+}
+
+.filters {
+    width: 100%;
+    text-align: center;
+}
+
+.filters button {
+    font-size: 16px;
+    font-family: 'Domine', serif;
+    font-weight: 500;
+    padding: 10px;
+    width: 12%;
+    margin: 15px;
 }

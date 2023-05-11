@@ -6,17 +6,18 @@ function ArtList() {
     const [artList, setArtList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const filters = ["Americas", "Ancient", "Landscapes", "Impressionism", "Photography", "Mythology"];
 
     const searchItems = () => {
         setIsLoading(true);
         fetch(`https://api.artic.edu/api/v1/artworks/search?q=${searchInput}`)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.data);
+                console.log(data.data)
                 setArtList(data.data);
                 setIsLoading(false);
             })
-            .catch((err) => {
+            .catch ((err) => {
                 console.log(err.message);
             });
     };
@@ -46,8 +47,12 @@ function ArtList() {
                 />
                 <button onClick={() => searchItems()}>Search</button>
             </div>
-            <div>
-
+            <div className="filters">
+                {
+                    filters.map((filter) => (
+                        <button onClick={() => { setSearchInput(filter); setArtList(artList.filter(art => art.style_titles.includes(filter.toLowerCase()) || art.subject_titles.includes(filter.toLowerCase())))}}>{filter}</button>
+                    ))
+                }
             </div>
             {isLoading ? <h2 className="art-loading">Loading...</h2> :
                 <div className="art-cards">
@@ -59,7 +64,7 @@ function ArtList() {
                 </div>
             }
         </div>
-    )
+    );
 }
 
 export default ArtList;
