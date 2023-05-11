@@ -12,6 +12,7 @@ input {
     font-family: 'Domine', serif;
     margin: 10px 5px 10px 0;
     padding: 6px;
+    width: 80%;
 }
 
 button {
@@ -19,6 +20,7 @@ button {
     font-family: 'Domine', serif;
     font-weight: 500;
     padding: 6px;
+    width: 10%;
 }
 
 .art-list {
@@ -37,4 +39,9 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.search-bar {
+    width: 100%;
+    text-align: center;
 }

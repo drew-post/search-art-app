@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './Art.css';
+import './ArtDetails.css';
 import PlaceholderImage from '../assets/placeholder-image.png';
 
 function ArtDetails() {
@@ -10,7 +10,7 @@ function ArtDetails() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true)
+        setIsLoading(true);
         fetch(`https://api.artic.edu/api/v1/artworks/${id}`)
             .then((response) => response.json())
             .then((data) => {
@@ -24,14 +24,16 @@ function ArtDetails() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`)
-        .then((data) => {
-            console.log(data);
-            setImgSrc(data.url);
-        })
-        .catch((err) => {
-            console.log(err.message);
-        });
+        if(art.image_id) {
+            fetch(`https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`)
+            .then((data) => {
+                console.log(data);
+                setImgSrc(data.url);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        }
     }, [art]);
 
     return (
@@ -52,7 +54,7 @@ function ArtDetails() {
                         <p><b>Exhibition History:</b> {art.exhibition_history === "none" || art.exhibition_history === null ? "N/A" : art.exhibition_history}</p>
                     </div>
                     <br />
-                    <img src={art.image_id === null ? PlaceholderImage : imgSrc} alt={art.thumbnail?.alt} width={500} />
+                    <img src={art.image_id === null ? PlaceholderImage : imgSrc} alt={art.thumbnail?.alt} width={800} />
                 </div>
             }
         </div>

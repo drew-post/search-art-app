@@ -38,13 +38,16 @@ function ArtList() {
     return (
         <div className="art-list">
             <h1>Art Database</h1>
-            <p>Search and learn about art provided by the Art Institute of Chicago!</p>
-            <div>
+            <p>Search and learn about art provided by the Art Institute of Chicago.</p>
+            <div className="search-bar">
                 <input
                     placeholder='Search...'
                     onChange={(e) => setSearchInput(e.target.value)}
                 />
                 <button onClick={() => searchItems()}>Search</button>
+            </div>
+            <div>
+
             </div>
             {isLoading ? <h2 className="art-loading">Loading...</h2> :
                 <div className="art-cards">
